@@ -13,7 +13,8 @@ namespace Fatec.Helpers.GitHubObserver.domain.routines
         {
             IEmailSender emailSender = new EmailSenderImpl();
 
-            emailSender.Send(new EmailBuilder(data).Build());
+            emailSender.Send(new EmailBuilder(data).Build("diogojunqueirageraldo@gmail.com",
+                                                           "Diogo Junqueira Geraldo"));
         }
     }
 }

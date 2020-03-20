@@ -1,44 +1,38 @@
 ﻿using FluentEmail.Core;
 using FluentEmail.Mailgun;
 using FluentEmail.Razor;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Text;
 
 namespace Fatec.Helpers.GitHubObserver.domain.routines.email
 {
     class EmailBuilder
     {
-        public string Template { get; private set; }
-        public dynamic Data { get; private set; }
+        private dynamic Data { get; set; }
+        private MailMessage Message { get; set; }
 
         public EmailBuilder(dynamic data)
         {
-            Email.DefaultRenderer = new RazorRenderer();
-            Email.DefaultSender = new MailgunSender(
-                "domain",
-                "apikey"
-            );
-
-            this.Template = "Um novo commit no repositorio @Model.RepositoryName foi realizado \n Mudanças: @Model.Changes";
-
-            this.SetClearData(data);
-        }
-        public Email Build()
-        {
-            return (Email) Email
-                            .From("fatec.helpers@gmail.com")
-                            .To("diogojunqueirageraldo@gmail.com")
-                            .Subject("[Fatec.Helpers] Commit Realizado na Branch Master")
-                            .UsingTemplate(this.Template, new { 
-                                RepositoryName = this.Data["RepositoryName"], 
-                                Changes = this.Data["Changes"]
-                            });
-        }
-
-        private void SetClearData(dynamic data)
-        {
             this.Data = data;
+            this.Message = new MailMessage();
+        }
+        public MailMessage Build(string to, string name)
+        {
+            this.Message.To.Add(new MailAddress(to, name));
+            this.Message.From = new MailAddress("fatec.helpers@gmail.com", "Fatec.Helpers GitHub");
+            this.Message.Subject = "[Fatec Helpers] New Commit!";
+            this.Message.Body = this.GetClearData();
+            this.Message.IsBodyHtml = false;
+
+            return this.Message;
+        }
+
+        private string GetClearData()
+        {
+            return Convert.ToString(this.Data);
         }
     }
 }
