@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Fatec.Helpers.GitHubObserver.Domain.Models.Routines;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.models
+namespace Fatec.Helpers.GitHubObserver.Domain.Models
 {
     class Observer
     {
@@ -23,6 +24,7 @@ namespace Fatec.Helpers.GitHubObserver.models
             {
                 routine.Execute(data);
             });
+
         }
     }
 }

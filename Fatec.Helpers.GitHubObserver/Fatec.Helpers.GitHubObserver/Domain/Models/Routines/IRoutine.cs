@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.models
+namespace Fatec.Helpers.GitHubObserver.Domain.Models.Routines
 {
     interface IRoutine
     {

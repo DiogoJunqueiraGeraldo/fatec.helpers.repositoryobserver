@@ -1,11 +1,11 @@
-﻿using Fatec.Helpers.GitHubObserver.domain.routines.email;
-using Fatec.Helpers.GitHubObserver.models;
+﻿using Fatec.Helpers.GitHubObserver.Domain.Routines.Email;
+using Fatec.Helpers.GitHubObserver.Domain.Routines.Email.Sender;
 using FluentEmail.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.domain.routines
+namespace Fatec.Helpers.GitHubObserver.Domain.Models.Routines.Email
 {
     class SendEmail : IRoutine
     {

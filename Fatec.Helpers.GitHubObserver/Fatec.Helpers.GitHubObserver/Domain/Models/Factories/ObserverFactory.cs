@@ -1,20 +1,21 @@
-﻿using Fatec.Helpers.GitHubObserver.domain.routines;
+﻿using Fatec.Helpers.GitHubObserver.Domain.Models.Routines;
+using Fatec.Helpers.GitHubObserver.Domain.Models.Routines.Email;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.models
+namespace Fatec.Helpers.GitHubObserver.Domain.Models.Factories
 {
     class ObserverFactory
     {
-        private static List<IRoutine> routines = new List<IRoutine>();
+        private static List<IRoutine> Routines = new List<IRoutine>();
         public static Observer CreateObserver()
         {
             Observer observer = new Observer();
 
             ObserverFactory.SetRoutines();
 
-            ObserverFactory.routines.ForEach(routine =>
+            ObserverFactory.Routines.ForEach(routine =>
             {
                 observer.Register(routine);
             });
@@ -28,7 +29,7 @@ namespace Fatec.Helpers.GitHubObserver.models
                 new SendEmail()
             };
 
-            ObserverFactory.routines = new List<IRoutine>(routines);
+            ObserverFactory.Routines = new List<IRoutine>(routines);
         }
 
     }

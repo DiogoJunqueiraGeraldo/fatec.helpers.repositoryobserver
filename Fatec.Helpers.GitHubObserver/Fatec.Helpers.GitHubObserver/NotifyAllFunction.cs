@@ -6,7 +6,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Fatec.Helpers.GitHubObserver.models;
+using Fatec.Helpers.GitHubObserver.Domain.Models;
+using Fatec.Helpers.GitHubObserver.Domain.Models.Factories;
 
 namespace Fatec.Helpers.GitHubObserver
 {

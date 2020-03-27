@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.domain.routines.email
+namespace Fatec.Helpers.GitHubObserver.Domain.Routines.Email.Sender
 {
     class EmailSenderImpl : IEmailSender
     {
@@ -14,7 +14,7 @@ namespace Fatec.Helpers.GitHubObserver.domain.routines.email
             using (var client = new SmtpClient("smtp.gmail.com"))
             {
                 client.Port = 587;
-                client.Credentials = new NetworkCredential("fatec.helpers@gmail.com", "");
+                client.Credentials = new NetworkCredential("fatec.helpers@gmail.com", "fatec.helpers.senha");
                 client.EnableSsl = true;
                 client.Send(email);
             }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using System.Text;
 
-namespace Fatec.Helpers.GitHubObserver.domain.routines.email
+namespace Fatec.Helpers.GitHubObserver.Domain.Routines.Email
 {
     class EmailBuilder
     {
@@ -23,7 +23,7 @@ namespace Fatec.Helpers.GitHubObserver.domain.routines.email
         {
             this.Message.To.Add(new MailAddress(to, name));
             this.Message.From = new MailAddress("fatec.helpers@gmail.com", "Fatec.Helpers GitHub");
-            this.Message.Subject = "[Fatec Helpers] New Commit!";
+            this.Message.Subject = "[Fatec Helpers]";
             this.Message.Body = this.GetClearData();
             this.Message.IsBodyHtml = false;
 
