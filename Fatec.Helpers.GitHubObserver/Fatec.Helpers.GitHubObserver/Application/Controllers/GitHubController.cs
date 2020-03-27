@@ -1,5 +1,6 @@
 ﻿using Fatec.Helpers.GitHubObserver.Domain.Models;
 using Fatec.Helpers.GitHubObserver.Domain.Models.Factories;
+using Fatec.Helpers.GitHubObserver.Domain.Models.Routines.Email;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,12 +18,11 @@ namespace Fatec.Helpers.GitHubObserver.Application.Controllers
         {
             try
             {
-                Observer observer = ObserverFactory.CreateObserver();
-
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-
                 dynamic data = JsonConvert.DeserializeObject(requestBody);
 
+                Observer observer = new Observer();
+                observer.Register(new SendEmail());
                 observer.NotifyAll(data);
 
                 return new OkObjectResult("Rotinas executadas!");
